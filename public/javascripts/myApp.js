@@ -1,0 +1,35 @@
+/**
+ * Created by Jahanzaib on 11/1/2014.
+ */
+angular.module('managementApp',['ngRoute'])
+.config(function($routeProvider){
+        $routeProvider
+            .when('/',{
+                templateUrl:'html/templates/mainPage.html',
+            })
+            .when('/adminLogin',{
+                templateUrl:'html/templates/adminLogin.html',
+                controller:'adminLoginCtrl'
+            })
+            .when('/addStudent',{
+                templateUrl:'html/templates/addStudent.html',
+                controller:'addStudentCtrl'
+            })
+            .when('/adminDashboard',{
+                templateUrl:'html/templates/adminDashboard.html',
+                controller:'adminDashCtrl'
+            })
+            .when('/studentLogin',{
+                templateUrl:'html/templates/studentLogin.html',
+                controller:'studentLoginCtrl'
+            })
+            .when('/studentDashboard',{
+                templateUrl:'html/templates/studentDashboard.html',
+                controller:'studentDashCtrl'
+            })
+            .when('/profile',{
+                templateUrl:'html/templates/profile.html',
+                controller:'profileCtrl'
+            })
+            .otherwise({redirectTo: '/'})
+    })

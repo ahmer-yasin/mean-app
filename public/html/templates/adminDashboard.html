@@ -1,0 +1,161 @@
+<div class="container">
+    <h1 class="text-center"><b>ToDo App</b></h1>
+
+    <div class="navbar-default col-lg-12">
+    <ul class="nav nav-tabs">
+        <span class="col-lg-2"></span>
+        <li class="col-lg-4"><a data-toggle="tab" href="#addStudent">Add Student</a></li>
+        <li class="active col-lg-4"><a href="#adminDashboard" data-toggle="tab">Dashboard</a></li>
+    </ul>
+    </div>
+ <table class="table" border="1px">
+ <thead>
+        <tr><th><b>No.</b></th>
+            <th  class="text-center"><b>First Name</b></th>
+            <th  class="text-center"><b>Last Name</b></th>
+            <th  class="text-center"><b>Rating</b></th>
+            <th  class="text-center"><b>Class</b></th>
+            <th class="text-center"><b>Email</b></th>
+            <th  class="text-center"><b>Password</b></th>
+            <th  class="text-center"><b>Subjects</b></th>
+            <th  class="text-center"><b>task</b></th>
+        </tr>
+        </thead>
+        <thead>
+        <tr ng-repeat="value in allStudent | filter:searc">
+            <th><b>{{$index+1}}</b></th>
+            <th  class="text-center">{{value.firstName}}</th>
+            <th  class="text-center">{{value.lastName}}</th>
+            <th  class="text-center">{{value.rating}}</th>
+            <th  class="text-center">{{value.class}}</th>
+            <th  class="text-center">{{value.email}}</th>
+            <th  class="text-center">{{value.password}}</th>
+            <th  class="text-center"><select class="selectSize" ng-model='selectedNumber' ng-options='number for number in value.subjects'></select></th>
+            <th  class="text-center"><button ng-click="editStudent($index)"  data-toggle="modal" data-target="#taskModal">open</button></th>
+            <th  class="text-center"><a ng-click="editStudent($index)" class="btn btn-warning btn-lg"  data-toggle="modal" data-target="#myModal">edit</a></th>
+        </tr>
+        </thead>
+    </table>
+
+
+    <!--edit Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Edit Student</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th><h3>First Name</h3></th>
+                            <th><h3>Last Name</h3></th>
+                            <th><h3>Rating</h3></th>
+                        </tr>
+                        </thead>
+                        <thead>
+                        <tr>
+                            <th><input ng-model="editingStudent.firstName" type="text"/></th>
+                            <th><input ng-model="editingStudent.lastName" type="text"/></th>
+                            <th>
+                                <select class="pull-right selectSize" ng-model="editingStudent.rating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th><h3>Class</h3></th>
+                            <th><h3>Email</h3></th>
+                            <th><h3>Password</h3></th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <select class="pull-right selectSize pull-left" ng-model="editingStudent.class">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select></th>
+                            <th><input ng-model="editingStudent.email" type="text"/></th>
+                            <th><input ng-model="editingStudent.password" type="text"/></th>
+                        </tr>
+                        <tr>
+                            <th><h3>SUBJECT</h3></th>
+                            <th><h3>TASK</h3></th>
+                        </tr>
+                        <tr>
+                            <th>
+                            <ol>
+                                <li ng-repeat="subj in editingStudent.subjects track by $index"><input  ng-model="editingStudent.subjects[$index]" type="text"/></li>
+                            </ol>
+                            </th>
+                            <th>
+                                <textarea ng-model="editingStudent.studentTask.task" name="" id="" cols="20" rows="7">{{editingStudent.studentTask.task}}</textarea>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button ng-click="deleteEditedStudent()" type="button" class="btn btn-info pull-left" data-dismiss="modal">delete Student</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button  ng-click="saveEditedStudent()" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--edit model-->
+
+ <!-- task Modal -->
+    <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Task Student</h4>
+                </div>
+                <div class="modal-body">
+                 <div style="background-color:grey !important"><b>Task status : </b><span ng-show="editingStudent.studentTask.taskDone">done from student.</span><span ng-hide="editingStudent.studentTask.taskDone">Not done from student.</span> <br>
+                         <span> <b>Task rating :</b><select class="selectSize" ng-model="editingStudent.studentTask.taskRating">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                   </span>
+                </div>
+                <h3 style="background-color:red">
+                    <span class="pull-left"><b>Task :</b></span>
+                   {{editingStudent.studentTask.task}}
+                </h3>
+                <div style="background-color:pink;">
+                    <span class="pull-left"><b>Comments :</b></span><br>
+                    <h4 ng-repeat="showCmnt in editingStudent.studentTask.comments track by $index" style="background-color:green;">{{showCmnt}}</h4>
+                </div>
+                <div class="text-center">
+                    <textarea ng-model="cmnt" cols="50" rows="4">{{cmnt}}</textarea></div> <br>
+                    <span style="margin-left:215px"><button class="btn btn-default" ng-click="comentTask(cmnt)">Add Comment</button></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- task model-->
+    <div class="form-group text-center pull-right">
+        <div class="col-lg-12">
+            <a class="btn btn-default btn-lg" ng-click="logOutAdmin()">Logout</a>
+        </div>
+    </div>
+
+</div>

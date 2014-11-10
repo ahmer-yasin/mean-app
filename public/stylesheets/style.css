@@ -1,0 +1,27 @@
+*{
+    font-family:"Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+body{
+    background-color:#9acfea;
+}
+
+
+
+.userFrm{
+    margin-top: 150px;
+}
+
+.selectSize{
+    width: 140px;
+    height: 26px;
+}
+
+.mainBtns{
+    margin-bottom: 10px;
+    width: 210px;
+}
+table{
+    border-radius: 5px;
+    border: 2px solid auto ;
+}

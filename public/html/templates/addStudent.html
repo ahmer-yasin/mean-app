@@ -1,0 +1,92 @@
+<div class="container">
+    <h1 class="text-center"><b>Management System</b></h1>
+<div class="navbar-default">
+    <ul class="nav nav-tabs">
+        <li class="active col-lg-6"><a data-toggle="tab" href="#addStudent">Add Student</a></li>
+        <li class="col-lg-6"><a href="#adminDashboard" data-toggle="tab">Dashboard</a></li>
+    </ul>
+</div>
+    <form class="form-horizontal">
+        <h2 class="text-center"><b>Add student</b></h2>
+        <h2 class="text-center" style="background: red" ng-show="invalidForm"><b>Form not filled</b></h2>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <input ng-model="newStudent.firstName" class="form-control"  placeholder="First Name">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <input ng-model="newStudent.lastName" class="form-control" placeholder="Last Name">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <input ng-model="newStudent.email" type="email" class="form-control" placeholder="email">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <input ng-model="newStudent.password" type="text" class="form-control" placeholder="password">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <b class="pull-left">Rating :</b>
+                <select class="pull-left" ng-model="newStudent.rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <select class="pull-right" ng-model="newStudent.class">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <b class="pull-right">Class :</b>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <input ng-model="subject1" type="text" class="form-control" placeholder="subject">
+                <input ng-model="subject2" type="text" class="form-control" placeholder="subject">
+                <input ng-model="subject3" type="text" class="form-control" placeholder="subject">
+                <input ng-model="subject4" type="text" class="form-control" placeholder="subject">
+                <input ng-model="subject5" type="text" class="form-control" placeholder="subject">
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <div class="col-lg-12">
+                <span class="col-lg-2"></span>
+                <a class="btn btn-default col-lg-4" href="#">Cancel</a>
+                <button type="submit" class="btn btn-primary col-lg-4" ng-click="addStudent(newStudent)">Add</button>
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <div class="col-lg-12">
+                <a class="btn btn-warning btn-block" href="#adminDashboard">Dashboard</a>
+            </div>
+        </div>
+
+    </form>
+
+</div>
