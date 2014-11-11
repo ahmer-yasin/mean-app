@@ -9,7 +9,7 @@
     </div>
 
 
-    <table class="table table-striped table-hover ">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th>#</th>
@@ -55,15 +55,15 @@
     </table>
 
     <div class="text-center" >
-    <h2 style="background-color:#2b542c;margin: 0"><b>TASK</b></h2>
-    <div style="background-color: #a6e1ec;height: 58px;padding: 15px;" class="col-md-12" >{{student.studentTask.task}}</div>
+    <h2 style="margin: 0"><b>TASK</b></h2>
+    <div style="background-color: #a6e1ec;height: 58px;padding: 15px;border: 1px solid; border-radius: 2px" class="col-md-12" >{{student.studentTask.task}}</div>
             <b style="margin-left:50px;" class="pull-left">Done task: <input type="checkbox" ng-model="student.studentTask.taskDone" ng-click="student.studentTask.taskDone=!student.studentTask.taskDone"></b> <br>
             <b style="margin-right:50px;" class="pull-right">Rating from admin: <i style="color:red">{{student.studentTask.taskRating}}</i></b>
         <div>
-         <span style="background-color:yellow;margin-left:50px" class="text-center"><b>Comments</b></span>
-            <span style="background-color: azure;margin-top:-4px;" class="col-md-12" ng-repeat="cmnts in student.studentTask.comments track by $index">{{cmnts}}</span>
+         <span style="background-color:red;margin-left:50px border: 1px solid; border-radius: 2px;" class="text-center"><b>Comments</b></span>
+            <span style="background-color: azure;margin-top:-4px;border: 1px solid; border-radius: 5px;color: red" class="col-md-12" ng-repeat="cmnts in student.studentTask.comments track by $index">{{cmnts}}</span>
         </div>
-        <span><textarea style="margin-right: 150px;" ng-model="comment" cols="100" rows="2">{{comment}}</textarea></span><br/>
+        <span><textarea style="margin-right: 150px; border: 1px solid; border-radius: 2px" ng-model="comment" cols="100" rows="2">{{comment}}</textarea></span><br/>
         <button class="btn bg-primary text-center" ng-click="addComments(comment)">Add Comment</button>
     </div>
 
